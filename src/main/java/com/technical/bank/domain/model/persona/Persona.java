@@ -1,11 +1,12 @@
 package com.technical.bank.domain.model.persona;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @EqualsAndHashCode
-@Builder(toBuilder = true)
+@AllArgsConstructor
 @Getter
 public class Persona {
 
