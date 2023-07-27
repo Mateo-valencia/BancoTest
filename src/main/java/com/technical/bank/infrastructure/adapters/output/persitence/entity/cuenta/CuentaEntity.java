@@ -1,12 +1,12 @@
 package com.technical.bank.infrastructure.adapters.output.persitence.entity.cuenta;
 
+import com.technical.bank.infrastructure.adapters.output.persitence.entity.cliente.ClienteEntity;
+import com.technical.bank.infrastructure.adapters.output.persitence.entity.movimiento.MovimientoEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,4 +25,11 @@ public class CuentaEntity {
 
     @Column
     private String estado;
+
+    @ManyToOne
+    @JoinColumn(name="clienteId", nullable=false)
+    private ClienteEntity clienteEntity;
+
+    @OneToMany(mappedBy="cuentaEntity")
+    private List<MovimientoEntity> movimientosEntity;
 }
