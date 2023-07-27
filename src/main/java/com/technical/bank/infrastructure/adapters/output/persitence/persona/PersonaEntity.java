@@ -1,6 +1,6 @@
-package com.technical.bank.infrastructure.adapters.output.persitence.entity.persona;
+package com.technical.bank.infrastructure.adapters.output.persitence.persona;
 
-import com.technical.bank.infrastructure.adapters.output.persitence.entity.cliente.ClienteEntity;
+import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClienteEntity;
 import lombok.Getter;
 import lombok.Setter;
 

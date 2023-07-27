@@ -1,6 +1,6 @@
-package com.technical.bank.infrastructure.adapters.output.persitence.entity.movimiento;
+package com.technical.bank.infrastructure.adapters.output.persitence.movimiento;
 
-import com.technical.bank.infrastructure.adapters.output.persitence.entity.cuenta.CuentaEntity;
+import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.CuentaEntity;
 import lombok.Getter;
 import lombok.Setter;
 
