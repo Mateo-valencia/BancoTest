@@ -9,8 +9,10 @@ import com.technical.bank.domain.model.cliente.ClienteFactory;
 import com.technical.bank.domain.model.persona.Persona;
 import lombok.AllArgsConstructor;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class CrearClienteService implements CrearClienteUseCase {
@@ -19,15 +21,22 @@ public class CrearClienteService implements CrearClienteUseCase {
     private final PersonaOuPutPort personaOuPutPort;
 
     @Override
-    public Cliente crearCliente(Cliente cliente) {
-        Persona persona = personaOuPutPort.guardarPersona(cliente);
+    public List<Cliente> crearCliente(List<Cliente> clientes) {
 
-        if (Objects.nonNull(persona)){
-            cliente = ClienteFactory.setClienteId(cliente, UUID.randomUUID().toString());
+        return clientes.stream()
+                .map(cliente -> {
+                    Persona persona = personaOuPutPort.guardarPersona(cliente);
+                    Optional<Cliente> clienteExistente = clienteOutPutPort.findByPersonaIdentificacion(persona.getIdentificacion());
 
-            return clienteOutPutPort.guardarCliente(cliente);
-        }
+                    if (clienteExistente.isEmpty()){
+                        cliente = ClienteFactory.setClienteId(cliente, UUID.randomUUID().toString());
 
-        throw new BusinessException("Ocurrio Un error con El registro");
+                        return clienteOutPutPort.guardarCliente(cliente,persona);
+                    }
+
+                    throw new BusinessException("El Cliente Ya Existe");
+                })
+                .collect(Collectors.toList());
+
     }
 }

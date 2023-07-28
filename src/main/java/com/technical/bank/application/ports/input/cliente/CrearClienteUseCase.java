@@ -2,7 +2,9 @@ package com.technical.bank.application.ports.input.cliente;
 
 import com.technical.bank.domain.model.cliente.Cliente;
 
+import java.util.List;
+
 public interface CrearClienteUseCase {
 
-    public Cliente crearCliente(Cliente cliente);
+    List<Cliente> crearCliente(List<Cliente> cliente);
 }

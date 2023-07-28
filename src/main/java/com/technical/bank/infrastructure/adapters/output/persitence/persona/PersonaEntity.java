@@ -13,21 +13,22 @@ import javax.persistence.*;
 public class PersonaEntity {
 
     @Id
+    @Column(length = 20)
     private String identificacion;
 
-    @Column
+    @Column(length = 40)
     private String nombre;
 
-    @Column
+    @Column(length = 10)
     private String genero;
 
     @Column
     private int edad;
 
-    @Column
+    @Column(length = 100)
     private String direccion;
 
-    @Column
+    @Column(length = 30)
     private String telefono;
 
     @OneToOne(mappedBy = "personaEntity")

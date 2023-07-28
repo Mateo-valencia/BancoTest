@@ -4,7 +4,7 @@ import com.technical.bank.domain.model.cuenta.Cuenta;
 import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.CuentaEntity;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CuentaPersistenceMapper {
 
     CuentaEntity toCuentaEntity(Cuenta cuenta);

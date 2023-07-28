@@ -24,7 +24,7 @@ public class CuentaEntity {
     private String saldoInicial;
 
     @Column
-    private String estado;
+    private Boolean estado;
 
     @ManyToOne
     @JoinColumn(name="clienteId", nullable=false)

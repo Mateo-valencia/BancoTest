@@ -1,5 +1,6 @@
 package com.technical.bank.domain.model.cliente;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.technical.bank.domain.model.cuenta.Cuenta;
 import com.technical.bank.domain.model.persona.Persona;
 import lombok.Builder;
@@ -13,6 +14,7 @@ public class Cliente extends Persona {
     private final String clienteId;
     private final String contrasena;
     private final boolean estado;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final List<Cuenta> cuentas;
 
     @Builder(toBuilder = true)

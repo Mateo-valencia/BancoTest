@@ -15,16 +15,17 @@ import java.util.List;
 public class ClienteEntity  {
 
     @Id
+    @Column(length = 50)
     private String clienteId;
 
-    @Column
+    @Column(length = 10)
     private String contrasena;
 
     @Column
     private Boolean estado;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "persona_id", referencedColumnName = "identificacion")
+    @JoinColumn(name = "identificacion", referencedColumnName = "identificacion")
     private PersonaEntity personaEntity;
 
     @OneToMany(mappedBy="clienteEntity")

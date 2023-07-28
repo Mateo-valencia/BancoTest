@@ -12,19 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Objects;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/prestamo")
+@RequestMapping("/cliente")
 @RequiredArgsConstructor
 public class ClienteRestAdapter {
 
     private final CrearClienteUseCase crearClienteUseCase;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public String crearCliente(@Valid @RequestBody ClienteDTO clienteDTO){
-        Cliente cliente = crearClienteUseCase.crearCliente(ClienteMapper.ClienteDtoToCliente(clienteDTO));
+    public List<Cliente> crearCliente(@Valid @RequestBody List<ClienteDTO> clienteDTOS){
+        List<Cliente> clientes = clienteDTOS.stream().map(ClienteMapper::ClienteDtoToCliente).collect(Collectors.toList());
 
-        return Objects.nonNull(cliente) ? "Creacion del Cliente Exitosa" : "Ocurrio Un error Con la creacion del cliente";
+        return crearClienteUseCase.crearCliente(clientes);
     }
 }
