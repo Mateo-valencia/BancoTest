@@ -1,7 +1,6 @@
 package com.technical.bank.domain.model.persona;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -10,10 +9,10 @@ import lombok.Getter;
 @Getter
 public class Persona {
 
-    private final String identificacion;
-    private final String nombre;
-    private final String genero;
-    private final int edad;
-    private final String direccion;
-    private final String telefono;
+    protected final String identificacion;
+    protected final String nombre;
+    protected final String genero;
+    protected final int edad;
+    protected final String direccion;
+    protected final String telefono;
 }

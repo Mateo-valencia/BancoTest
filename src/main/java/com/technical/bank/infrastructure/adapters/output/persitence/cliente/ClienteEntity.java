@@ -21,7 +21,7 @@ public class ClienteEntity  {
     private String contrasena;
 
     @Column
-    private String estado;
+    private Boolean estado;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "persona_id", referencedColumnName = "identificacion")
