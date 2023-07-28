@@ -18,6 +18,7 @@ public class CuentaMapper {
                                 .numero(cuentaDTO.getNumeroCuenta())
                                 .tipo(cuentaDTO.getTipo())
                                 .saldoInicial(cuentaDTO.getSaldoInicial())
+                                .saldoDisponible(cuentaDTO.getSaldoInicial())
                                 .estado(cuentaDTO.isEstado())
                                 .nombreCliente(cuentaDTO.getCliente())
                                 .build()

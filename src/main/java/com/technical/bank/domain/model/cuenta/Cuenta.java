@@ -14,7 +14,8 @@ public class Cuenta {
 
     private final int numero;
     private final String tipo;
-    private final String saldoInicial;
+    private final int saldoInicial;
+    private final int saldoDisponible;
     private final boolean estado;
     private final List<Movimiento> movimientos;
     private final String nombreCliente;

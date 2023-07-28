@@ -2,6 +2,7 @@ package com.technical.bank.infrastructure.adapters.config;
 
 import com.technical.bank.domain.service.cliente.CrearClienteService;
 import com.technical.bank.domain.service.cuenta.CrearCuentaService;
+import com.technical.bank.domain.service.movimiento.RealizarMovimientoService;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClientePersistenceAdapter;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClienteRepository;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.mapper.ClientePersistenceMapper;
@@ -10,6 +11,8 @@ import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.Cuent
 import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.CuentaRepository;
 import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.mapper.CuentaPersistenceMapper;
 import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.MovimientoPersistenceAdapter;
+import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.MovimientoRepository;
+import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.mapper.MovimientoPersistenceMapper;
 import com.technical.bank.infrastructure.adapters.output.persitence.persona.PersonaPersistenceAdapter;
 import com.technical.bank.infrastructure.adapters.output.persitence.persona.PersonaRepository;
 import com.technical.bank.infrastructure.adapters.output.persitence.persona.mapper.PersonaPersistenceMapper;
@@ -63,8 +66,14 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public MovimientoPersistenceAdapter movimientoPersistenceAdapter (){
-        return new MovimientoPersistenceAdapter();
+    public MovimientoPersistenceAdapter movimientoPersistenceAdapter (
+            MovimientoRepository movimientoRepository,
+            MovimientoPersistenceMapper movimientoPersistenceMapper
+    ){
+        return new MovimientoPersistenceAdapter(
+                movimientoRepository,
+                movimientoPersistenceMapper
+        );
     }
 
     @Bean
@@ -80,12 +89,25 @@ public class BeanConfiguration {
 
     @Bean
     public CrearCuentaService crearCuentaService(
+            CuentaPersistenceAdapter cuentaPersistenceAdapter,
             PersonaPersistenceAdapter personaPersistenceAdapter,
             ClientePersistenceAdapter clientePersistenceAdapter
     ){
         return new CrearCuentaService(
+                cuentaPersistenceAdapter,
                 personaPersistenceAdapter,
                 clientePersistenceAdapter
+        );
+    }
+
+    @Bean
+    public RealizarMovimientoService realizarMovimientoService(
+            MovimientoPersistenceAdapter movimientoPersistenceAdapter,
+            CuentaPersistenceAdapter cuentaPersistenceAdapter
+    ){
+        return new RealizarMovimientoService(
+                movimientoPersistenceAdapter,
+                cuentaPersistenceAdapter
         );
     }
 }

@@ -14,6 +14,6 @@ public class Movimiento {
     private final String id;
     private final Date fecha;
     private final String tipo;
-    private final String valor;
-    private final String saldo;
+    private final int valor;
+    private final int saldo;
 }

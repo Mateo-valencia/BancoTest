@@ -1,11 +1,11 @@
-package com.technical.bank.infrastructure.adapters.input.rest.cuenta.dto;
+package com.technical.bank.infrastructure.adapters.input.rest.movimiento.dto;
 
 import lombok.Data;
 
 import javax.validation.constraints.Size;
 
 @Data
-public class CuentaDTO {
+public class MovimientoDTO {
 
     private int numeroCuenta;
     @Size(max = 15,message = "El campo Tipo Supera el Tamaño Maximo (15)")
@@ -14,6 +14,6 @@ public class CuentaDTO {
     private int saldoInicial;
     @Size(max = 15,message = "El campo Estado Supera el Tamaño Maximo (15)")
     private boolean estado;
-    @Size(max = 10,message = "El campo Cliente Supera el Tamaño Maximo (10)")
-    private String cliente;
+    @Size(max = 20,message = "El campo movimiento Supera el Tamaño Maximo (20)")
+    private int movimiento;
 }

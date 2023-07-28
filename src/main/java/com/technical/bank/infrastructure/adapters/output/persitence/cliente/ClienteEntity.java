@@ -28,6 +28,6 @@ public class ClienteEntity  {
     @JoinColumn(name = "identificacion", referencedColumnName = "identificacion")
     private PersonaEntity personaEntity;
 
-    @OneToMany(mappedBy="clienteEntity")
+    @OneToMany
     private List<CuentaEntity> cuentasEntity;
 }

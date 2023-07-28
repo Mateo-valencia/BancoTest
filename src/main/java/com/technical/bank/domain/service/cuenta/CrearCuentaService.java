@@ -3,6 +3,7 @@ package com.technical.bank.domain.service.cuenta;
 import com.technical.bank.application.ports.input.cuenta.CrearCuentaUseCase;
 import com.technical.bank.application.ports.output.Persona.PersonaOuPutPort;
 import com.technical.bank.application.ports.output.cliente.ClienteOutPutPort;
+import com.technical.bank.application.ports.output.cuenta.CuentaOutPutPort;
 import com.technical.bank.domain.exception.BusinessException;
 import com.technical.bank.domain.model.cliente.Cliente;
 import com.technical.bank.domain.model.cuenta.Cuenta;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CrearCuentaService implements CrearCuentaUseCase {
 
+    private final CuentaOutPutPort cuentaOutPutPort;
     private final PersonaOuPutPort personaOuPutPort;
     private final ClienteOutPutPort clienteOutPutPort;
 
@@ -31,6 +33,8 @@ public class CrearCuentaService implements CrearCuentaUseCase {
 
                         if (!cliente.isEmpty()){
                             List<Cuenta> cuentasExistentes = cliente.get().getCuentas() == null ? new ArrayList<>() : cliente.get().getCuentas();
+
+                            cuentaOutPutPort.guardarCuenta(cuenta);
 
                             cuentasExistentes.add(cuenta);
 

@@ -1,10 +1,12 @@
 package com.technical.bank.infrastructure.adapters.output.persitence.movimiento;
 
-import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.CuentaEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Setter
@@ -14,6 +16,7 @@ import java.util.Date;
 public class MovimientoEntity {
 
     @Id
+    @Column(length = 50)
     private String id;
 
     @Column
@@ -23,12 +26,8 @@ public class MovimientoEntity {
     private String tipo;
 
     @Column
-    private String valor;
+    private int valor;
 
     @Column
     private String saldo;
-
-    @ManyToOne
-    @JoinColumn(name="numero", nullable=false)
-    private CuentaEntity cuentaEntity;
 }

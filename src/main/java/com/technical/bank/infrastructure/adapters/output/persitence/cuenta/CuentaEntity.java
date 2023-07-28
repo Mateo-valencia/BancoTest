@@ -1,6 +1,5 @@
 package com.technical.bank.infrastructure.adapters.output.persitence.cuenta;
 
-import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClienteEntity;
 import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.MovimientoEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,15 +20,14 @@ public class CuentaEntity {
     private String tipo;
 
     @Column
-    private String saldoInicial;
+    private int saldoInicial;
+
+    @Column
+    private int saldoDisponible;
 
     @Column
     private Boolean estado;
 
-    @ManyToOne
-    @JoinColumn(name="clienteId", nullable=false)
-    private ClienteEntity clienteEntity;
-
-    @OneToMany(mappedBy="cuentaEntity")
+    @OneToMany
     private List<MovimientoEntity> movimientosEntity;
 }

@@ -5,6 +5,8 @@ import com.technical.bank.domain.model.cuenta.Cuenta;
 import com.technical.bank.infrastructure.adapters.output.persitence.cuenta.mapper.CuentaPersistenceMapper;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class CuentaPersistenceAdapter implements CuentaOutPutPort {
 
@@ -18,5 +20,10 @@ public class CuentaPersistenceAdapter implements CuentaOutPutPort {
         cuentaEntity = cuentaRepository.save(cuentaEntity);
 
         return cuentaPersistenceMapper.toCuenta(cuentaEntity);
+    }
+
+    @Override
+    public Optional<Cuenta> findByNumeroCuenta(Integer numeroCuenta) {
+        return cuentaRepository.findById(numeroCuenta).map(cuentaPersistenceMapper::toCuenta);
     }
 }
