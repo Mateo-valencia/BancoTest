@@ -10,6 +10,7 @@ import com.technical.bank.infrastructure.adapters.input.rest.movimiento.dto.Movi
 import com.technical.bank.infrastructure.adapters.input.rest.movimiento.mapper.MovimientoMapper;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,7 +39,6 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
                             if(cuenta.get().getSaldoDisponible() == 0){
                                 throw new BusinessException("Saldo No disponible");
                             }
-
                             cuentaActualizada = cuenta.get().toBuilder()
                                     .saldoDisponible(cuenta.get().getSaldoInicial() - movimiento.getValor())
                                     .build();
@@ -49,8 +49,15 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
                                     .build();
 
                         }
-
                         movimiento = movimiento.toBuilder().saldo(cuentaActualizada.getSaldoDisponible()).build();
+
+                        List<Movimiento> movimientosExistentes = cuentaActualizada.getMovimientos() != null ? cuentaActualizada.getMovimientos() : new ArrayList<>();
+                        movimientosExistentes.add(movimiento);
+
+                        cuentaActualizada = cuentaActualizada.toBuilder()
+                                .movimientos(movimientosExistentes)
+                                .build();;
+
                         cuentaOutPutPort.guardarCuenta(cuentaActualizada);
                         return movimientoOutPutPort.guardarMovimiento(movimiento);
                     }

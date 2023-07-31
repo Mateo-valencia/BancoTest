@@ -30,14 +30,12 @@ public class BeanConfiguration {
     @Bean
     public ClientePersistenceAdapter clientePersistenceAdapter (
             ClienteRepository clienteRepository,
-            CuentaRepository cuentaRepository,
             ClientePersistenceMapper clientePersistenceMapper,
             PersonaPersistenceMapper personaPersistenceMapper,
             CuentaPersistenceMapper cuentaPersistenceMapper
     ){
         return new ClientePersistenceAdapter(
                 clienteRepository,
-                cuentaRepository,
                 clientePersistenceMapper,
                 personaPersistenceMapper,
                 cuentaPersistenceMapper
@@ -57,11 +55,13 @@ public class BeanConfiguration {
     @Bean
     public CuentaPersistenceAdapter cuentaPersistenceAdapter (
             CuentaRepository cuentaRepository,
-            CuentaPersistenceMapper cuentaPersistenceMapper
+            CuentaPersistenceMapper cuentaPersistenceMapper,
+            MovimientoPersistenceMapper movimientoPersistenceMapper
     ){
         return new CuentaPersistenceAdapter(
                 cuentaRepository,
-                cuentaPersistenceMapper
+                cuentaPersistenceMapper,
+                movimientoPersistenceMapper
         );
     }
 

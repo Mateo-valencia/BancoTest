@@ -23,8 +23,6 @@ public class CuentaRestAdapter {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Cuenta> crearCuentas(@Valid @RequestBody List<CuentaDTO> cuentaDTOS){
-        List<Cuenta> cuentas = crearCuentaUseCase.crearCuentas(CuentaMapper.CuentaDtoListToCuentaList(cuentaDTOS));
-
-        return crearCuentaUseCase.crearCuentas(cuentas);
+        return crearCuentaUseCase.crearCuentas(CuentaMapper.CuentaDtoListToCuentaList(cuentaDTOS));
     }
 }

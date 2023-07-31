@@ -28,6 +28,7 @@ public class CuentaEntity {
     @Column
     private Boolean estado;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "numero")
     private List<MovimientoEntity> movimientosEntity;
 }
