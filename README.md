@@ -1,8 +1,11 @@
 # Requirements
 
 JDK 11
+
 GRADLE 8.1.1
+
 SPRING BOOT 2.7.13
+
 POSTGRES 15.3
 
 ## Docker Configuration
