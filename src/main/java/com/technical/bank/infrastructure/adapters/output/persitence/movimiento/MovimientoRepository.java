@@ -16,7 +16,7 @@ public interface MovimientoRepository extends JpaRepository<MovimientoEntity, St
             "inner join tb_movimiento movimiento on (cuenta.numero = movimiento.numero)\n" +
             "inner join tb_cliente cliente on (cuenta.cliente_id = cliente.cliente_id)\n" +
             "inner join tb_persona persona on (cliente.identificacion = persona.identificacion)\n" +
-            "where persona.nombre = 'Marianela Montalvo'\n" +
+            "where persona.nombre = :nombreCliente \n" +
             "order by movimiento.fecha DESC;", nativeQuery = true)
     List<MovimientoCliente> getMovimientoCliente(@Param("nombreCliente") String nombreCliente);
 }
