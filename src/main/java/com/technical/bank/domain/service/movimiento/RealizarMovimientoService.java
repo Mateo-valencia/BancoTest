@@ -8,6 +8,7 @@ import com.technical.bank.domain.model.cuenta.Cuenta;
 import com.technical.bank.domain.model.movimiento.Movimiento;
 import com.technical.bank.infrastructure.adapters.input.rest.movimiento.dto.MovimientoDTO;
 import com.technical.bank.infrastructure.adapters.input.rest.movimiento.mapper.MovimientoMapper;
+import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.MovimientoCliente;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -65,5 +66,10 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
                     throw new BusinessException("Cuenta No encontrada");
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MovimientoCliente> getMovimientosCliente(String nombreCliente) {
+        return movimientoOutPutPort.getMovimientosCliente(nombreCliente);
     }
 }

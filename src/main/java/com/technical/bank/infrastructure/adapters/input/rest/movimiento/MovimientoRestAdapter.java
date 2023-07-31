@@ -3,12 +3,10 @@ package com.technical.bank.infrastructure.adapters.input.rest.movimiento;
 import com.technical.bank.application.ports.input.movimiento.RealizarMovimientosUseCase;
 import com.technical.bank.domain.model.movimiento.Movimiento;
 import com.technical.bank.infrastructure.adapters.input.rest.movimiento.dto.MovimientoDTO;
+import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.MovimientoCliente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,5 +21,10 @@ public class MovimientoRestAdapter {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Movimiento> realizarMovimientos(@Valid @RequestBody List<MovimientoDTO> movimientoDTOS){
         return realizarMovimientosUseCase.realizarMovimientos(movimientoDTOS);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<MovimientoCliente> getMovimientosCliente(@RequestParam String nombreCliente){
+        return realizarMovimientosUseCase.getMovimientosCliente(nombreCliente);
     }
 }

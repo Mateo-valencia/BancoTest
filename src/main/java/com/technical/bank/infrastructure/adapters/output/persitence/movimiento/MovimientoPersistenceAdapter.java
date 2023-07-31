@@ -5,6 +5,8 @@ import com.technical.bank.domain.model.movimiento.Movimiento;
 import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.mapper.MovimientoPersistenceMapper;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class MovimientoPersistenceAdapter implements MovimientoOutPutPort {
 
@@ -16,5 +18,10 @@ public class MovimientoPersistenceAdapter implements MovimientoOutPutPort {
         MovimientoEntity movimientoEntity = movimientoPersistenceMapper.toMovimientoEntity(movimiento);
         movimientoEntity = movimientoRepository.save(movimientoEntity);
         return movimientoPersistenceMapper.toMovimiento(movimientoEntity);
+    }
+
+    @Override
+    public List<MovimientoCliente> getMovimientosCliente(String nombreCliente) {
+        return movimientoRepository.getMovimientoCliente(nombreCliente);
     }
 }
