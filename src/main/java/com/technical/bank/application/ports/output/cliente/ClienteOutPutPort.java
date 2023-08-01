@@ -10,4 +10,8 @@ public interface ClienteOutPutPort {
     Cliente guardarCliente(Cliente cliente, Persona identificacion);
 
     Optional<Cliente> findByPersonaIdentificacion(String identificacion);
+
+    Optional<Cliente> findByClienteId(String clienteId);
+
+    void eliminarCliente(String clienteId);
 }

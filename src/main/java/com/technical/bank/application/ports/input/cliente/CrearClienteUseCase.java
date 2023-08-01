@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface CrearClienteUseCase {
 
-    List<Cliente> crearCliente(List<Cliente> cliente);
+    List<Cliente> crearClientes(List<Cliente> cliente);
+
+
 }

@@ -9,4 +9,6 @@ public interface PersonaOuPutPort {
     Persona guardarPersona(Persona persona);
 
     Optional<Persona> findByNombre(String nombre);
+
+    void eliminarPersona(String identificacio);
 }

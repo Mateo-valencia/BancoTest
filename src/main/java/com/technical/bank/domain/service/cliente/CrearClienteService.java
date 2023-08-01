@@ -21,7 +21,7 @@ public class CrearClienteService implements CrearClienteUseCase {
     private final PersonaOuPutPort personaOuPutPort;
 
     @Override
-    public List<Cliente> crearCliente(List<Cliente> clientes) {
+    public List<Cliente> crearClientes(List<Cliente> clientes) {
 
         return clientes.stream()
                 .map(cliente -> {

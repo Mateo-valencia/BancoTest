@@ -7,6 +7,8 @@ import javax.validation.constraints.Size;
 @Data
 public class ClienteDTO {
 
+    @Size(max = 50, message = "El campo clienteId Supera el Tamaño Maximo (50)")
+    private String clienteId;
     @Size(max = 20,message = "El campo Identificacion Supera el Tamaño Maximo (50)")
     private String identificacion;
     @Size(max = 40,message = "El campo Nombres Supera el Tamaño Maximo (40)")

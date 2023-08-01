@@ -24,4 +24,9 @@ public class PersonaPersistenceAdapter implements PersonaOuPutPort {
     public Optional<Persona> findByNombre(String nombre) {
         return personaRepository.findByNombre(nombre).map(personaPersistenceMapper::toPersona);
     }
+
+    @Override
+    public void eliminarPersona(String identificacio) {
+        personaRepository.deleteById(identificacio);
+    }
 }

@@ -45,4 +45,14 @@ public class ClientePersistenceAdapter implements ClienteOutPutPort {
                 .map(clientePersistenceMapper::toCliente);
     }
 
+    @Override
+    public Optional<Cliente> findByClienteId(String clienteId) {
+        return clienteRepository.findById(clienteId).map(clientePersistenceMapper::toCliente);
+    }
+
+    @Override
+    public void eliminarCliente(String clienteId) {
+        clienteRepository.deleteById(clienteId);
+    }
+
 }

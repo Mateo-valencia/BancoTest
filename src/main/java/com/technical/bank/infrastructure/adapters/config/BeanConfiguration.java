@@ -1,6 +1,8 @@
 package com.technical.bank.infrastructure.adapters.config;
 
+import com.technical.bank.domain.service.cliente.ActualizarClienteService;
 import com.technical.bank.domain.service.cliente.CrearClienteService;
+import com.technical.bank.domain.service.cliente.EliminarClienteService;
 import com.technical.bank.domain.service.cuenta.CrearCuentaService;
 import com.technical.bank.domain.service.movimiento.RealizarMovimientoService;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClientePersistenceAdapter;
@@ -84,6 +86,30 @@ public class BeanConfiguration {
         return  new CrearClienteService(
                 clientePersistenceAdapter,
                 personaPersistenceAdapter
+        );
+    }
+
+    @Bean
+    public ActualizarClienteService actualizarClienteService(
+            ClientePersistenceAdapter clientePersistenceAdapter,
+            PersonaPersistenceAdapter personaPersistenceAdapter
+    ){
+        return  new ActualizarClienteService(
+                clientePersistenceAdapter,
+                personaPersistenceAdapter
+        );
+    }
+
+    @Bean
+    public EliminarClienteService eliminarClienteService(
+            ClientePersistenceAdapter clientePersistenceAdapter,
+            PersonaPersistenceAdapter personaPersistenceAdapter,
+            CuentaPersistenceAdapter cuentaPersistenceAdapter
+    ){
+        return new EliminarClienteService(
+                clientePersistenceAdapter,
+                personaPersistenceAdapter,
+                cuentaPersistenceAdapter
         );
     }
 

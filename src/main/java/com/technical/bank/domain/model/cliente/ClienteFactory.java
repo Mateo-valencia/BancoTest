@@ -10,4 +10,17 @@ public class ClienteFactory {
                 .clienteId( id )
                 .build();
     }
+
+    public static Cliente actualizarDatosCliente(Cliente clienteAnterior, Cliente clienteNuevo){
+        return clienteAnterior.toBuilder()
+                .identificacion(clienteNuevo.getIdentificacion())
+                .nombre(clienteNuevo.getNombre())
+                .genero(clienteNuevo.getGenero())
+                .edad(clienteNuevo.getEdad())
+                .direccion(clienteNuevo.getDireccion())
+                .telefono(clienteNuevo.getTelefono())
+                .contrasena(clienteNuevo.getContrasena())
+                .estado(clienteNuevo.isEstado())
+                .build();
+    }
 }
