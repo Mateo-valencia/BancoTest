@@ -28,7 +28,7 @@ public class ClienteEntity  {
     @JoinColumn(name = "identificacion", referencedColumnName = "identificacion")
     private PersonaEntity personaEntity;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private List<CuentaEntity> cuentasEntity;
 }
