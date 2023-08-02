@@ -33,15 +33,15 @@ public class EliminarClienteService implements EliminarClienteUseCase {
                     if (cuentasAsociadas == null || cuentasAsociadas.isEmpty()){
                         personaOuPutPort.eliminarPersona(clienteExistente.get().getIdentificacion());
                         clienteOutPutPort.eliminarCliente(clienteExistente.get().getClienteId());
+                    }else {
+                        throw new BusinessException("El cliente Tiene Cuentas Asociadas Inicialmente debe Eliminar Las Cuentas.");
                     }
-
-                    throw new BusinessException("El cliente Tiene Cuentas Asociadas Inicialmente debe Eliminar Las Cuentas.");
+                }else {
+                    throw new BusinessException("El Cliente No Existe");
                 }
-
-                throw new BusinessException("El Cliente No Existe");
+            }else {
+                throw new BusinessException("El Id Cliente Es Requerido Para la Eliminacion");
             }
-
-            throw new BusinessException("El Id Cliente Es Requerido Para la Eliminacion");
         });
 
     }
