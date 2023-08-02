@@ -39,12 +39,13 @@ public class ActualizarMovimientoService implements ActualizarMovimientoUseCase 
 
                             cuentaOutPutPort.guardarCuenta(cuentaActualizada);
                             return movimientoOutPutPort.guardarMovimiento(movimientoActualizado);
+                        }else {
+                            throw new BusinessException("Cuenta Asociada No Encontrada");
                         }
 
-                        throw new BusinessException("Cuenta Asociada No Encontrada");
+                    }else {
+                        throw new BusinessException("Movimiento No encontrado");
                     }
-
-                    throw new BusinessException("Movimiento No encontrado");
                 }).collect(Collectors.toList());
     }
 }

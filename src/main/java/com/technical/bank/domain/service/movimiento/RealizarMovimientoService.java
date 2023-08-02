@@ -46,9 +46,9 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
 
                         cuentaOutPutPort.guardarCuenta(cuentaActualizada);
                         return movimientoOutPutPort.guardarMovimiento(movimiento);
+                    }else {
+                        throw new BusinessException("Cuenta No encontrada");
                     }
-
-                    throw new BusinessException("Cuenta No encontrada");
                 })
                 .collect(Collectors.toList());
     }
