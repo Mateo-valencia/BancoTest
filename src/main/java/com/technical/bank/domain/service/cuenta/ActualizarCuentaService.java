@@ -28,9 +28,9 @@ public class ActualizarCuentaService implements ActualizarCuentaUseCase {
                 Cuenta cuentaActualizada = CuentaFactory.actualizatDatosCuenta(cuentaExistente.get(),cuenta);
 
                 cuentasActualizadas.add(cuentaOutPutPort.guardarCuenta(cuentaActualizada));
+            }else {
+                throw new BusinessException("El Numero de cuenta No existe");
             }
-
-            throw new BusinessException("El Numero de cuenta No existe");
         }
 
         return cuentasActualizadas;

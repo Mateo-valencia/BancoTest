@@ -27,12 +27,12 @@ public class EliminarCuentaService implements EliminarCuentaUseCase {
 
                 if (movimientosAsociados == null || movimientosAsociados.isEmpty()){
                     cuentaOutPutPort.eliminarCuenta(cuenta.getNumero());
+                }else {
+                    throw new BusinessException("No es posible eliminar la cuenta dado que cuenta con movimientos asociados");
                 }
-
-                throw new BusinessException("No es posible eliminar la cuenta dado que cuenta con movimientos asociados");
+            }else {
+                throw new BusinessException("El Numero de cuenta No existe");
             }
-
-            throw new BusinessException("El Numero de cuenta No existe");
         }
     }
 }

@@ -37,9 +37,9 @@ public class CrearCuentaService implements CrearCuentaUseCase {
                     Cliente clienteActualizado = cliente.get().toBuilder().cuentas(cuentasExistentes).build();
                     clienteOutPutPort.guardarCliente(clienteActualizado,persona.get());
                 }
+            }else {
+                throw new BusinessException("El Cliente No Existe");
             }
-
-            throw new BusinessException("El Cliente No Existe");
         }
 
         return cuentas;
