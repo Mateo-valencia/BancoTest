@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorHandler {
 
-    @ExceptionHandler(BusinessException.class)
+    @ExceptionHandler({BusinessException.class,RuntimeException.class,Exception.class})
     public final ResponseEntity<ErrorDTO> handlePrestamoExceptions(BusinessException exception){
         ErrorDTO errorDTO = new ErrorDTO();
         errorDTO.setMensaje(exception.getMessage());

@@ -4,6 +4,7 @@ import com.technical.bank.domain.model.movimiento.Movimiento;
 import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.MovimientoCliente;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MovimientoOutPutPort {
 
@@ -12,4 +13,8 @@ public interface MovimientoOutPutPort {
     List<MovimientoCliente> getMovimientosCliente(String nombreCliente);
 
     List<Movimiento> findByNumeroCuenta(Integer numeroCuenta);
+
+    Optional<Movimiento> findById(String id);
+
+    void eliminarMovimiento(String id);
 }

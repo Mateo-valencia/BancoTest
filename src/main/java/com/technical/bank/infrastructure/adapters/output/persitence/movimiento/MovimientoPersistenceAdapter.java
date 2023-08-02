@@ -6,6 +6,7 @@ import com.technical.bank.infrastructure.adapters.output.persitence.movimiento.m
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -32,5 +33,15 @@ public class MovimientoPersistenceAdapter implements MovimientoOutPutPort {
                 .stream()
                 .map(movimientoPersistenceMapper::toMovimiento)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Movimiento> findById(String id) {
+        return movimientoRepository.findById(id).map(movimientoPersistenceMapper::toMovimiento);
+    }
+
+    @Override
+    public void eliminarMovimiento(String id) {
+        movimientoRepository.deleteById(id);
     }
 }

@@ -33,23 +33,8 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
                     Optional<Cuenta> cuenta = cuentaOutPutPort.findByNumeroCuenta(movimientoDTO.getNumeroCuenta());
 
                     if (cuenta.isPresent()){
-                        Cuenta cuentaActualizada;
+                        Cuenta cuentaActualizada = realizarOperacion(movimiento, cuenta.get());
 
-                        if (RETIRO.equalsIgnoreCase(movimiento.getTipo())){
-
-                            if(cuenta.get().getSaldoDisponible() == 0){
-                                throw new BusinessException("Saldo No disponible");
-                            }
-                            cuentaActualizada = cuenta.get().toBuilder()
-                                    .saldoDisponible(cuenta.get().getSaldoInicial() - movimiento.getValor())
-                                    .build();
-
-                        }else {
-                            cuentaActualizada = cuenta.get().toBuilder()
-                                    .saldoDisponible(cuenta.get().getSaldoInicial() + movimiento.getValor())
-                                    .build();
-
-                        }
                         movimiento = movimiento.toBuilder().saldo(cuentaActualizada.getSaldoDisponible()).build();
 
                         List<Movimiento> movimientosExistentes = cuentaActualizada.getMovimientos() != null ? cuentaActualizada.getMovimientos() : new ArrayList<>();
@@ -66,6 +51,27 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
                     throw new BusinessException("Cuenta No encontrada");
                 })
                 .collect(Collectors.toList());
+    }
+
+    public Cuenta realizarOperacion(Movimiento movimiento, Cuenta cuenta) {
+        Cuenta cuentaActualizada;
+
+        if (RETIRO.equalsIgnoreCase(movimiento.getTipo())){
+            if(cuenta.getSaldoDisponible() == 0){
+                throw new BusinessException("Saldo No disponible");
+            }
+
+            cuentaActualizada = cuenta.toBuilder()
+                    .saldoDisponible(cuenta.getSaldoInicial() - movimiento.getValor())
+                    .build();
+
+        }else {
+            cuentaActualizada = cuenta.toBuilder()
+                    .saldoDisponible(cuenta.getSaldoInicial() + movimiento.getValor())
+                    .build();
+
+        }
+        return cuentaActualizada;
     }
 
     @Override

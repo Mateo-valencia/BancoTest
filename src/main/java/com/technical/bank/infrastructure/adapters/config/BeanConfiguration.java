@@ -6,6 +6,8 @@ import com.technical.bank.domain.service.cliente.EliminarClienteService;
 import com.technical.bank.domain.service.cuenta.ActualizarCuentaService;
 import com.technical.bank.domain.service.cuenta.CrearCuentaService;
 import com.technical.bank.domain.service.cuenta.EliminarCuentaService;
+import com.technical.bank.domain.service.movimiento.ActualizarMovimientoService;
+import com.technical.bank.domain.service.movimiento.EliminarMovimientoService;
 import com.technical.bank.domain.service.movimiento.RealizarMovimientoService;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClientePersistenceAdapter;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClienteRepository;
@@ -155,5 +157,25 @@ public class BeanConfiguration {
                 movimientoPersistenceAdapter,
                 cuentaPersistenceAdapter
         );
+    }
+
+    @Bean
+    public ActualizarMovimientoService actualizarMovimientoService(
+            MovimientoPersistenceAdapter movimientoPersistenceAdapter,
+            CuentaPersistenceAdapter cuentaPersistenceAdapter,
+            RealizarMovimientoService realizarMovimientoService
+    ){
+        return new ActualizarMovimientoService(
+                movimientoPersistenceAdapter,
+                cuentaPersistenceAdapter,
+                realizarMovimientoService
+        );
+    }
+
+    @Bean
+    public EliminarMovimientoService eliminarMovimientoService(
+            MovimientoPersistenceAdapter movimientoPersistenceAdapter
+    ){
+        return new EliminarMovimientoService(movimientoPersistenceAdapter);
     }
 }
