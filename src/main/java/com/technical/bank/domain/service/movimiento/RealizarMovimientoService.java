@@ -57,7 +57,7 @@ public class RealizarMovimientoService implements RealizarMovimientosUseCase {
 
                         cuentaActualizada = cuentaActualizada.toBuilder()
                                 .movimientos(movimientosExistentes)
-                                .build();;
+                                .build();
 
                         cuentaOutPutPort.guardarCuenta(cuentaActualizada);
                         return movimientoOutPutPort.guardarMovimiento(movimiento);

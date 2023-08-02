@@ -3,7 +3,9 @@ package com.technical.bank.infrastructure.adapters.config;
 import com.technical.bank.domain.service.cliente.ActualizarClienteService;
 import com.technical.bank.domain.service.cliente.CrearClienteService;
 import com.technical.bank.domain.service.cliente.EliminarClienteService;
+import com.technical.bank.domain.service.cuenta.ActualizarCuentaService;
 import com.technical.bank.domain.service.cuenta.CrearCuentaService;
+import com.technical.bank.domain.service.cuenta.EliminarCuentaService;
 import com.technical.bank.domain.service.movimiento.RealizarMovimientoService;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClientePersistenceAdapter;
 import com.technical.bank.infrastructure.adapters.output.persitence.cliente.ClienteRepository;
@@ -123,6 +125,24 @@ public class BeanConfiguration {
                 cuentaPersistenceAdapter,
                 personaPersistenceAdapter,
                 clientePersistenceAdapter
+        );
+    }
+
+    @Bean
+    public ActualizarCuentaService actualizarClienteService(
+            CuentaPersistenceAdapter cuentaPersistenceAdapter
+    ){
+        return new ActualizarCuentaService(cuentaPersistenceAdapter);
+    }
+
+    @Bean
+    public EliminarCuentaService eliminarCuentaService(
+            CuentaPersistenceAdapter cuentaPersistenceAdapter,
+            MovimientoPersistenceAdapter movimientoPersistenceAdapter
+    ){
+        return new EliminarCuentaService(
+                cuentaPersistenceAdapter,
+                movimientoPersistenceAdapter
         );
     }
 

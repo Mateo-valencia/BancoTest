@@ -11,4 +11,6 @@ public interface CuentaOutPutPort {
     Optional<Cuenta> findByNumeroCuenta(Integer numeroCuenta);
 
     List<Cuenta> findByClienteId(String ClienteId);
+
+    void eliminarCuenta(Integer numero);
 }

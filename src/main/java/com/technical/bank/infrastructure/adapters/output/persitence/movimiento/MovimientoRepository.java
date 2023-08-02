@@ -19,4 +19,7 @@ public interface MovimientoRepository extends JpaRepository<MovimientoEntity, St
             "where persona.nombre = :nombreCliente \n" +
             "order by movimiento.fecha DESC;", nativeQuery = true)
     List<MovimientoCliente> getMovimientoCliente(@Param("nombreCliente") String nombreCliente);
+
+    @Query(value = "select * from tb_movimiento where numero = :numeroCuenta ;", nativeQuery = true)
+    List<MovimientoEntity> findByNumeroCuenta(@Param("numeroCuenta") Integer numeroCuenta);
 }

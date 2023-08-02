@@ -4,6 +4,7 @@ import com.technical.bank.application.ports.input.cuenta.CrearCuentaUseCase;
 import com.technical.bank.application.ports.output.Persona.PersonaOuPutPort;
 import com.technical.bank.application.ports.output.cliente.ClienteOutPutPort;
 import com.technical.bank.application.ports.output.cuenta.CuentaOutPutPort;
+import com.technical.bank.domain.exception.BusinessException;
 import com.technical.bank.domain.model.cliente.Cliente;
 import com.technical.bank.domain.model.cuenta.Cuenta;
 import com.technical.bank.domain.model.persona.Persona;
@@ -37,6 +38,8 @@ public class CrearCuentaService implements CrearCuentaUseCase {
                     clienteOutPutPort.guardarCliente(clienteActualizado,persona.get());
                 }
             }
+
+            throw new BusinessException("El Cliente No Existe");
         }
 
         return cuentas;

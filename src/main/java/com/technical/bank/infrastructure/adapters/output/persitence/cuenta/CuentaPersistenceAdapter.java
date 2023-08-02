@@ -44,4 +44,9 @@ public class CuentaPersistenceAdapter implements CuentaOutPutPort {
         return cuentaRepository.findByClienteId(ClienteId).stream()
                 .map(cuentaPersistenceMapper::toCuenta).collect(Collectors.toList());
     }
+
+    @Override
+    public void eliminarCuenta(Integer numero) {
+        cuentaRepository.deleteById(numero);
+    }
 }

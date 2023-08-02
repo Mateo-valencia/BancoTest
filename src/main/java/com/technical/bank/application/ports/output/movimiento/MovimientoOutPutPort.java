@@ -10,4 +10,6 @@ public interface MovimientoOutPutPort {
     Movimiento guardarMovimiento(Movimiento movimiento);
 
     List<MovimientoCliente> getMovimientosCliente(String nombreCliente);
+
+    List<Movimiento> findByNumeroCuenta(Integer numeroCuenta);
 }
