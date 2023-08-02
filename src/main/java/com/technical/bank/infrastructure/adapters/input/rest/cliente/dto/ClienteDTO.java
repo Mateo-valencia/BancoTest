@@ -22,5 +22,5 @@ public class ClienteDTO {
     private String telefono;
     @Size(max = 10,message = "El campo Contrasena Supera el Tamaño Maximo (10)")
     private String contrasena;
-    private Boolean estado;
+    private boolean estado;
 }

@@ -10,6 +10,7 @@ public class ClienteMapper {
 
     public static Cliente ClienteDtoToCliente(ClienteDTO clienteDTO){
         return Cliente.builder()
+                .clienteId(clienteDTO.getClienteId())
                 .identificacion(clienteDTO.getIdentificacion())
                 .nombre(clienteDTO.getNombres())
                 .genero(clienteDTO.getGenero())
@@ -17,7 +18,7 @@ public class ClienteMapper {
                 .direccion(clienteDTO.getDireccion())
                 .telefono(clienteDTO.getTelefono())
                 .contrasena(clienteDTO.getContrasena())
-                .estado(clienteDTO.getEstado())
+                .estado(clienteDTO.isEstado())
                 .build();
     }
 }

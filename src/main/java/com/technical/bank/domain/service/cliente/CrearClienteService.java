@@ -32,9 +32,9 @@ public class CrearClienteService implements CrearClienteUseCase {
                         cliente = ClienteFactory.setClienteId(cliente, UUID.randomUUID().toString());
 
                         return clienteOutPutPort.guardarCliente(cliente,persona);
+                    }else {
+                        throw new BusinessException("El Cliente Ya Existe");
                     }
-
-                    throw new BusinessException("El Cliente Ya Existe");
                 })
                 .collect(Collectors.toList());
 

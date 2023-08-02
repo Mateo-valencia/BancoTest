@@ -131,7 +131,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public ActualizarCuentaService actualizarClienteService(
+    public ActualizarCuentaService actualizarCuentaService(
             CuentaPersistenceAdapter cuentaPersistenceAdapter
     ){
         return new ActualizarCuentaService(cuentaPersistenceAdapter);
